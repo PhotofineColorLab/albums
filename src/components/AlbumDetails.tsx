@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -50,13 +49,19 @@ const AlbumDetails: React.FC = () => {
       return;
     }
 
+    // Reorder images to put the cover photo first
+    const reorderedImages = [
+      coverPhoto,
+      ...uploadedImages.filter(img => img.public_id !== coverPhoto.public_id)
+    ];
+
     const newAlbum: Album = {
       id: Date.now().toString(),
       name: values.name,
       photographer: values.photographer,
       password: values.password,
       coverPhoto: coverPhoto,
-      images: uploadedImages,
+      images: reorderedImages,
       createdAt: new Date().toISOString(),
     };
 

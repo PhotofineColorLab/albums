@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useAlbum } from "../context/AlbumContext";
@@ -15,6 +14,11 @@ const AlbumViewer: React.FC = () => {
 
   // Use either the current album images or uploaded images
   const displayImages = currentAlbum ? currentAlbum.images : uploadedImages;
+  
+  // Reset to first image (cover photo) whenever album changes
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [currentAlbum]);
   
   // Get the title and metadata
   const albumName = currentAlbum?.name || "Untitled Album";
