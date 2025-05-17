@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { UploadedImage } from "../services/cloudinaryService";
 
@@ -23,6 +22,7 @@ interface AlbumContextType {
     React.SetStateAction<"upload" | "selectCover" | "albumDetails" | "viewAlbum" | "albumsList">
   >;
   albums: Album[];
+  setAlbums: React.Dispatch<React.SetStateAction<Album[]>>;
   addAlbum: (album: Album) => void;
   currentAlbum: Album | null;
   setCurrentAlbum: React.Dispatch<React.SetStateAction<Album | null>>;
@@ -84,6 +84,7 @@ export const AlbumProvider: React.FC<{ children: ReactNode }> = ({
     currentStep,
     setCurrentStep,
     albums,
+    setAlbums,
     addAlbum,
     currentAlbum,
     setCurrentAlbum,
